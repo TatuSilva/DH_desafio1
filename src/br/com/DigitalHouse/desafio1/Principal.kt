@@ -12,6 +12,8 @@ fun main() {
     val prof2 = ProfessorTitular("Paula", "Souza", 2, 2, "Geografia")
 
     val aluno1Kotlin = Matricula(aluno1, kotlin)
+
+
     aluno1.print()
     aluno2.print()
     prof1.print()
