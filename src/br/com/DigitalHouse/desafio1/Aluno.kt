@@ -10,7 +10,7 @@ class Aluno(var nome: String = "", var sobrenome: String, var codAluno: Int = 0)
             gerarCod()
        }
 
-    fun printAluno(){
+    fun print(){
         println("$nome $sobrenome Código: $codAluno")
     }
 }
