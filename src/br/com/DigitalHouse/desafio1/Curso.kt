@@ -11,10 +11,12 @@ open class Curso (var nome : String = "", var codCurso: Int = 0, var alunosMax: 
         }
         return false
     }
+
     fun excluirAluno(umAluno: Aluno){
         var index = listaAlunos.indexOf(umAluno)
         listaAlunos.removeAt(index)
     }
+
 }
 
 
