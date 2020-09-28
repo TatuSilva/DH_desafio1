@@ -27,4 +27,29 @@ class DigitalHouseManager() {
         }
             return listaCursos
         }
+
+        fun excluirCurso(codExcluir: Int){
+
+            listaCursos.forEach{
+                if(codExcluir == it.codCurso)
+                {
+                   // println(listaCursos.indexOf("Kotlin", 1, 3))
+                }
+            }
+
+            //println("Index: $index")
+//            try {
+//                listaCursos.removeAt(index)
+//            }catch (ex: Exception){
+//                println("Código não encontrado. Tente novamente!")
+//            }
+//
+//            //return listaCursos
+        }
+
+        fun listaCursosPrint(){
+            listaCursos.forEach{
+                println(it.nome)
+            }
+        }
     }
