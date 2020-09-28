@@ -1,50 +1,52 @@
 package br.com.DigitalHouse.desafio1
 
 open class DigitalHouseManager() {
-    //var listaAlunos: MutableList<Aluno> = mutableListOf()
+
+    var listaAlunos: MutableList<Aluno> = mutableListOf()
     var listaProfessores: MutableList<Professor> = mutableListOf()
-    var listaProfessor: MutableList<Curso> = mutableListOf()
+    var listaCurso: MutableList<Curso> = mutableListOf()
     var listaMatriculas: MutableList<Matricula> = mutableListOf()
 
 //CURSOS
     open fun registrarCurso(novoCurso: Curso): Collection<Curso> {
         var codigoCadastrado = false
-        this.listaProfessor.forEach{
+        this.listaCurso.forEach{
             if(it.codCurso == novoCurso.codCurso){
                 codigoCadastrado = true
             }
         }
         if(!codigoCadastrado) {
-            listaProfessor.add(novoCurso)
+            listaCurso.add(novoCurso)
                 println("O curso foi registrado com sucesso!\nCurso: ${novoCurso.nome}\nCódigo: ${novoCurso.codCurso}\nQuantidade Máxima de Alunos: ${novoCurso.alunosMax}")
-            return listaProfessor
+            return listaCurso
         } else {
                 println("Código já cadastrado. Por favor tente novamente!")
         }
-        return listaProfessor
+        return listaCurso
         }
 //EXCLUIR CURSO
 
        open fun excluirCurso(codExcluir: Int): MutableList<Curso> {
            var cursoExcluir: Curso = Curso("Erro", 0,0)
            try {
-               this.listaProfessor.forEach {
+               this.listaCurso.forEach {
                    if (it.codCurso == codExcluir.toInt()) {
                        cursoExcluir = it
-                       var index = listaProfessor.indexOf(cursoExcluir)
-                       listaProfessor.removeAt(index)
+                       var index = listaCurso.indexOf(cursoExcluir)
+                       listaCurso.removeAt(index)
                        println("Curso ${cursoExcluir.nome} excluído com sucesso!")
-                   }//else cursoExcluir = Curso("Erro", 0,0)
+                   }
                }
                if(cursoExcluir.nome == "Erro")  println("Curso não encontrado. Tente novamente.")
            }catch (ex: Exception){
               // ENTENDER PQ ESTÁ CAINDO EM CATCH NO PRIMEIRO E ÚLTIMO INDEX
            }
-       return listaProfessor
+       return listaCurso
        }
+
 //IMPRIME LISTA CURSOS
         open fun listaCursosPrint(){
-            listaProfessor.forEach{
+            listaCurso.forEach{
                 println("${it.codCurso} - ${it.nome}")
             }
         }
@@ -114,5 +116,57 @@ open class DigitalHouseManager() {
             println("${it.codProfessor} - ${it.nome} ${it.sobrenome}")
         }
     }
+//MATRICULAR ALUNO
+    fun matricularAluno (novoAluno: Aluno): Collection<Aluno>{
+    var codigoCadastrado = false
+    this.listaAlunos.forEach{
+        if(it.codAluno == novoAluno.codAluno){
+            codigoCadastrado = true
+        }
+    }
+    if(!codigoCadastrado) {
+        listaAlunos.add(novoAluno)
+        println("Aluno(a) foi registrado com sucesso!\nNome Completo: ${novoAluno.nome} ${novoAluno.sobrenome}\nCódigo: ${novoAluno.codAluno}")
+        return listaAlunos
+    } else {
+        println("Código de aluno já cadastrado. Por favor tente novamente!")
+    }
+    return listaAlunos
+    }
 
-}
+    fun matricularAlunoCurso(codigoAluno: Int, codigoCurso: Int): MutableList<Matricula> {
+
+        var procuraCurso: Curso = Curso("", 0, 0)
+        var procuraAluno: Aluno = Aluno("", "", 0)
+        listaCurso.forEach{
+            if(codigoCurso.toInt() == it.codCurso) {
+                procuraCurso = it
+            }
+        }
+        listaAlunos.forEach{
+            if(codigoAluno.toInt() == it.codAluno) {
+                procuraAluno = it
+            }
+        }
+
+        if(procuraAluno.codAluno == 0)
+        {
+            println("Aluno não encontrado")
+            return listaMatriculas
+        }
+        if(procuraCurso.codCurso == 0) {
+            println("Curso não encontrado")
+            return listaMatriculas
+        }
+        if(procuraCurso.alunosMax > procuraCurso.listaAlunosNoCurso.size) {
+            procuraCurso.listaAlunosNoCurso.add(procuraAluno)
+            listaMatriculas.add(Matricula(procuraAluno,procuraCurso))
+            println("Matrícula realizada com sucesso!\n${procuraAluno.nome} foi matriculado no curso ${procuraCurso.nome}")
+        }else {
+            println("Não foi possível realizar a matrícula.\nNão há mais vagas disponíveis para este curso.")
+        }
+        return listaMatriculas
+        }
+
+        }
+
