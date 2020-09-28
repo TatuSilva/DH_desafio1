@@ -11,53 +11,33 @@ fun main() {
     val kotlin = Curso("Kotlin", 2, 3)
     val java = Curso("Java", 3, 2)
 
-    //val prof1 = ProfessorAdjunto("Bruna", "Lemos", 4, 1,6)
-    //val prof2 = ProfessorTitular("Paula", "Souza", 2, 2, "Geografia")
+    val prof1 = ProfessorAdjunto("Bruna", "Lemos", 4, 1,6)
+    val prof2 = ProfessorTitular("Paula", "Souza", 2, 2, "Geografia")
 
     //val aluno1Kotlin = Matricula(aluno1, kotlin)
 
-    manager.registrarCurso(android)
-    manager.registrarCurso(kotlin)
-    manager.registrarCurso(java)
+//    manager.registrarProfessorAdjunto(prof1)
+//    manager.listaProfPrint()
+//    println("-----------------------------")
+//    manager.registrarProfessorTitular(prof2)
+//    manager.listaProfPrint()
+//    println("-----------------------------")
+//    manager.excluirProfessor(1)
+//    manager.listaProfPrint()
 
-    println("--------ANTES EXCLUSÃO-----")
-    manager.listaCursosPrint()
-
-    println("-----------EXLUSÃO---------")
-    manager.excluirCurso(2)
-
-    println("------DEPOIS EXCLUSÃO------")
-    manager.listaCursosPrint()
-
-
-//    kotlin.print()
-//    aluno1.print()
-//    aluno2.print()
-//    prof1.print()
-//    prof2.print()
-//    aluno1Kotlin.print()
-
-
-//    println("-------testes----------")
+//    manager.registrarCurso(android)
+//    manager.registrarCurso(kotlin)
+//    manager.registrarCurso(java)
 //
-//    var lista = mutableListOf("a", "b", listOf("1","4",5))
-//    //val quebraLista= lista.get(2) as List<Any>
+//    println("--------ANTES EXCLUSÃO-----")
+//    manager.listaCursosPrint()
 //
-//    //val quebraLista2: List<Any> = listOf()
+//    println("-----------EXLUSÃO---------")
+//    manager.excluirCurso(1)
 //
-//    println("forEach")
-//    lista.forEach{
-//       // if (it is List<*>){
-//           // println(lista.indexOf())
-//       // }else println("desisto")
-//    }
-//
-//
-//    println("for")
-//    for (item in lista){
-//        if (item is List<*>){
-//            println(lista.indexOf(item))
-//        }else println("desisto")
-//    }
-//    //println(quebraLista.indexOf("1"))
+//    println("------DEPOIS EXCLUSÃO------")
+//    manager.listaCursosPrint()
+
+
+
 }
