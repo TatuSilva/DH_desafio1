@@ -62,7 +62,7 @@ open class DigitalHouseManager() {
         }
         if(!codigoCadastrado) {
             listaProfessores.add(novoProf)
-            println("O Professor(a) Adjunto/a foi registrado com sucesso!\nNome Completo: ${novoProf.nome}${novoProf.sobrenome}\nCódigo: ${novoProf.codProfessor}\nHoras de monitoria: ${novoProf.horasMonitoria}")
+            println("O Professor(a) Adjunto/a foi registrado com sucesso!\nNome Completo: ${novoProf.nome} ${novoProf.sobrenome}\nCódigo: ${novoProf.codProfessor}\nHoras de monitoria: ${novoProf.horasMonitoria}")
             return listaProfessores
         } else {
             println("Professor já cadastrado. Por favor tente novamente!")
@@ -100,7 +100,6 @@ open class DigitalHouseManager() {
                     println("Professor(a) ${profExcluir.nome} ${profExcluir.sobrenome} excluído com sucesso!")
                     naoEncontrado = 1
                 }else{
-                   // profExcluir = ProfessorTitular("Erro", "Erro", 0 ,0, "Erro")
                     naoEncontrado = 0
                 }
             }
@@ -133,7 +132,7 @@ open class DigitalHouseManager() {
     }
     return listaAlunos
     }
-
+//MATRICULAR ALUNO NO CURSO
     fun matricularAlunoCurso(codigoAluno: Int, codigoCurso: Int): MutableList<Matricula> {
 
         var procuraCurso: Curso = Curso("", 0, 0)
@@ -159,14 +158,66 @@ open class DigitalHouseManager() {
             return listaMatriculas
         }
         if(procuraCurso.alunosMax > procuraCurso.listaAlunosNoCurso.size) {
-            procuraCurso.listaAlunosNoCurso.add(procuraAluno)
+            procuraCurso.adicionarUmAluno(procuraAluno)
             listaMatriculas.add(Matricula(procuraAluno,procuraCurso))
-            println("Matrícula realizada com sucesso!\n${procuraAluno.nome} foi matriculado no curso ${procuraCurso.nome}")
+            println("Matrícula realizada com sucesso!\n${procuraAluno.nome} foi matriculado(a) no curso ${procuraCurso.nome}")
         }else {
             println("Não foi possível realizar a matrícula.\nNão há mais vagas disponíveis para este curso.")
         }
         return listaMatriculas
         }
 
+//ADICIONAR PROFESSORES A UM CURSO
+
+        fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int): MutableList<Professor> {
+            try{
+            var procuraProfTitular: ProfessorTitular = ProfessorTitular("", "",0,0, "")
+            var procuraProfAdjunto: ProfessorAdjunto = ProfessorAdjunto("", "",0,0, 0)
+            var procuraCurso: Curso = Curso("", 0, 0)
+
+            listaCurso.forEach{
+                if(codigoCurso.toInt() == it.codCurso) {
+                    procuraCurso = it
+                }
+            }
+            listaProfessores.forEach{
+                if(codigoProfessorAdjunto.toInt() == it.codProfessor) {
+                    procuraProfAdjunto = it as ProfessorAdjunto
+                }
+            }
+            listaProfessores.forEach{
+                if(codigoProfessorTitular.toInt() == it.codProfessor) {
+                    procuraProfTitular = it as ProfessorTitular
+                }
+            }
+
+                if(procuraProfTitular.codProfessor != 0 && procuraProfAdjunto.codProfessor != 0 && procuraCurso.codCurso != 0){
+                    procuraCurso.adicionarProfessores(procuraProfTitular, procuraProfAdjunto)
+                    println("Professor(a) alocado com sucesso!" +
+                            "\nCurso: ${procuraCurso.nome}" +
+                            "\nProfessor(a) Titular: ${procuraProfTitular.nome} ${procuraProfTitular.sobrenome}" +
+                            "\nProfessor(a) Adjunto(a): ${procuraProfAdjunto.nome} ${procuraProfAdjunto.sobrenome}")
+                    return listaProfessores
+                }
+
+            if(procuraCurso.codCurso == 0) {
+                println("Curso não encontrado")
+                return listaProfessores
+            }
+            if(procuraProfTitular.codProfessor == 0 )
+            {
+                println("Professor(a) titular não encontrado(a)")
+                return listaProfessores
+            }
+            if(procuraProfAdjunto.codProfessor == 0)
+            {
+                println("Professor(a) adjunto não encontrado(a)")
+                return listaProfessores
+            }
+            }catch (ex: Exception){
+                println("Algo deu errado. Verifique os códigos digitados.")
+            }
+            return listaProfessores
+        }
         }
 
