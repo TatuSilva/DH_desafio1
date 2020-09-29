@@ -12,8 +12,8 @@ fun main() {
     val kotlin = Curso("Kotlin", 2, 3)
     val java = Curso("Java", 3, 2)
 
-    val prof1 = ProfessorAdjunto("Bruna", "Lemos", 4, 1,6)
-    val prof2 = ProfessorTitular("Paula", "Souza", 2, 2, "Geografia")
+    val adjunto1 = ProfessorAdjunto("Bruna", "Lemos", 4, 1,6)
+    val titular1 = ProfessorTitular("Paula", "Souza", 2, 2, "Geografia")
 
     manager.registrarCurso(android)
     println("========================")
@@ -35,6 +35,13 @@ fun main() {
     println("========================")
     manager.matricularAlunoCurso(2,3)
     println("========================")
-    manager.matricularAlunoCurso(3,2)
+    manager.matricularAlunoCurso(3,3)
     println("========================")
+
+    manager.registrarProfessorTitular(titular1)
+    println("========================")
+    manager.registrarProfessorAdjunto(adjunto1)
+    println("========================")
+
+    manager.alocarProfessores(1,2,1)
 }
