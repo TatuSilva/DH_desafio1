@@ -1,4 +1,4 @@
-package br.com.DigitalHouse.desafio1
+package br.com.digitalHouse.desafio1
 
 open class Curso (var nome : String = "", var codCurso: Int = 0, var alunosMax: Int){
   //Um curso será igual a outro se seus códigos de curso forem iguais
@@ -14,7 +14,7 @@ open class Curso (var nome : String = "", var codCurso: Int = 0, var alunosMax: 
     }
 
     open fun excluirAluno(umAluno: Aluno){
-        var index = listaAlunosNoCurso.indexOf(umAluno)
+        val index = listaAlunosNoCurso.indexOf(umAluno)
         listaAlunosNoCurso.removeAt(index)
     }
 

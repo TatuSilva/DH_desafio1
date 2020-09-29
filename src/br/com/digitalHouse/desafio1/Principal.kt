@@ -1,7 +1,6 @@
-package br.com.DigitalHouse.desafio1
+package br.com.digitalHouse.desafio1
 
 import java.time.Year
-import java.util.*
 
 class Principal {
 }
@@ -70,177 +69,156 @@ fun main() {
             "1" -> {
                 try{
                     println("NOME DO CURSO:")
-                    var inputNomeCurso = readLine()!!.toString()
+                    val inputNomeCurso = readLine()!!.toString()
                     println("CÓDIGO DO CURSO:")
-                    var inputCodigoCurso = readLine()!!.toInt()
+                    val inputCodigoCurso = readLine()!!.toInt()
                     println("QUANTIDADE MÁXIMA DE ALUNOS:")
-                    var inputQntAlunos = readLine()!!.toInt()
-                    var novoCurso = Curso(inputNomeCurso, inputCodigoCurso, inputQntAlunos)
+                    val inputQntAlunos = readLine()!!.toInt()
+                    val novoCurso = Curso(inputNomeCurso, inputCodigoCurso, inputQntAlunos)
                     manager.registrarCurso(novoCurso)
                 }catch (ex: Exception){
                     println("Algo deu errado :(\n Tente novamente.")
             }
-            }
+            }//ADICIONAR UM NOVO CURSO
             "2" -> {
                 try{
                     println("CÓDIGO DO CURSO  A SER EXCLUÍDO:")
-                    var inputExcluirCurso = readLine()!!.toInt()
+                    val inputExcluirCurso = readLine()!!.toInt()
                     manager.excluirCurso(inputExcluirCurso)
                 }catch (ex: Exception){
                     println("Algo deu errado :(\n Tente novamente.")
             }
-            }
+            }//EXCLUIR UM CURSO
             "3" -> {
                 try{
-                   manager.listaCursosPrint()
+                    println("====LISTA DE CURSOS====")
+                    manager.listaCursosPrint()
                 }catch (ex: Exception){
                     println("Algo deu errado :(\n Tente novamente.")
             }
-            }
+            }//LISTAR CURSOS CADASTRADOS
             "4" -> {
                 try {
                     println("PARA PROFESSOR ADJUNTO DIGITE 1 E PARA PROFESSOR TITULAR DIGITE 2")
-                    var tipoProf = readLine()!!.toInt()
-                    when (tipoProf) {
+                    when (readLine()!!.toInt()) {
                     1 -> //ADJUNTO
                     {println("NOME DO PROFESSOR:")
-                    var inputNomeProf = readLine()!!.toString()
+                    val inputNomeProf = readLine()!!.toString()
                     println("SOBRENOME DO PROFESSOR:")
-                    var inputSobrenomeProf = readLine()!!.toString()
+                    val inputSobrenomeProf = readLine()!!.toString()
                     println("ANO DE INGRESSO NA DIGITAL HOUSE (YYYY)")
-                        if(readLine()!!.toInt() > Year.now().getValue() || readLine()!!.toInt() <= 1900) println("O ano foi digitado errado. Tente novamente")
-                    var tempoCasa= Year.now().getValue()-readLine()!!.toInt()
+                        if(readLine()!!.toInt() > Year.now().value || readLine()!!.toInt() <= 1900) println("O ano foi digitado errado. Tente novamente")
+                    val tempoCasa= Year.now().value -readLine()!!.toInt()
                     println("CÓDIGO DO PROFESSOR:")
-                    var inputCodigoProf = readLine()!!.toInt()
+                    val inputCodigoProf = readLine()!!.toInt()
                     println("HORAS DE MONITORIA:")
-                    var inputHoras = readLine()!!.toInt()
-                    var novoProfessorAdjunto = ProfessorAdjunto(inputNomeProf, inputSobrenomeProf, tempoCasa, inputCodigoProf, inputHoras)
+                    val inputHoras = readLine()!!.toInt()
+                    val novoProfessorAdjunto = ProfessorAdjunto(inputNomeProf, inputSobrenomeProf, tempoCasa, inputCodigoProf, inputHoras)
                     manager.registrarProfessorAdjunto(novoProfessorAdjunto)}
                     2 ->       //TITULAR
                     {println("NOME DO PROFESSOR:")
-                    var inputNomeProf = readLine()!!.toString()
+                    val inputNomeProf = readLine()!!.toString()
                     println("SOBRENOME DO PROFESSOR:")
-                    var inputSobrenomeProf = readLine()!!.toString()
+                    val inputSobrenomeProf = readLine()!!.toString()
                     println("ANO DE INGRESSO NA DIGITAL HOUSE (YYYY)")
-                        if(readLine()!!.toInt() > Year.now().getValue() || readLine()!!.toInt() <= 1900) println("O ano foi digitado errado. Tente novamente")
-                        var tempoCasa= Year.now().getValue()-readLine()!!.toInt()
+                        if(readLine()!!.toInt() > Year.now().value || readLine()!!.toInt() <= 1900) println("O ano foi digitado errado. Tente novamente")
+                        val tempoCasa= Year.now().value - readLine()!!.toInt()
                     println("CÓDIGO DO PROFESSOR:")
-                    var inputCodigoProf = readLine()!!.toInt()
+                    val inputCodigoProf = readLine()!!.toInt()
                     println("ESPECIALIDADE:")
-                    var inputEspecialidade = readLine()!!.toString()
-                    var novoProfessorTitular = ProfessorTitular(inputNomeProf, inputSobrenomeProf, tempoCasa, inputCodigoProf, inputEspecialidade)
+                    val inputEspecialidade = readLine()!!.toString()
+                    val novoProfessorTitular = ProfessorTitular(inputNomeProf, inputSobrenomeProf, tempoCasa, inputCodigoProf, inputEspecialidade)
                     manager.registrarProfessorTitular(novoProfessorTitular)}
                 }
                     } catch (ex: Exception){
                         println("Algo deu errado :(\n Tente novamente.")
                     }
-                }
+                }//ADICIONAR UM NOVO PROFESSOR
             "5" -> {
                 try{
                     println("CÓDIGO DO CURSO:")
-                    var inputCodCurso = readLine()!!.toInt()
+                    val inputCodCurso = readLine()!!.toInt()
                     println("CÓDIGO DO PROFESSOR ADJUNTO:")
-                    var inputCodAdjunto = readLine()!!.toInt()
+                    val inputCodAdjunto = readLine()!!.toInt()
                     println("CÓDIGO DO PROFESSOR TITULAR:")
-                    var inputCodTitular = readLine()!!.toInt()
+                    val inputCodTitular = readLine()!!.toInt()
                     manager.alocarProfessores(inputCodCurso, inputCodTitular, inputCodAdjunto)
                 }catch (ex: Exception){
                     println("Algo deu errado :(\n Tente novamente.")
             }
-            }
+            }//ALOCAR PROFESSOR EM UM CURSO
             "6" -> {
                 try{
-                    println("NOME DO CURSO:")
-                    var inputNomeCurso = readLine()!!.toString()
-                    println("CÓDIGO DO CURSO:")
-                    var inputCodigoCurso = readLine()!!.toInt()
-                    println("QUANTIDADE MÁXIMA DE ALUNOS:")
-                    var inputQntAlunos = readLine()!!.toInt()
-                    var novoCurso = Curso(inputNomeCurso, inputCodigoCurso, inputQntAlunos)
-                    manager.registrarCurso(novoCurso)
+                    println("CÓDIGO DO PROFESSOR A SER EXCLUÍDO:")
+                    val inputCodProf = readLine()!!.toInt()
+                    manager.excluirProfessor(inputCodProf)
                 }catch (ex: Exception){
                     println("Algo deu errado :(\n Tente novamente.")
             }
-            }
+            }//EXCLUIR UM PROFESSOR
             "7" -> {
                 try{
-                    println("NOME DO CURSO:")
-                    var inputNomeCurso = readLine()!!.toString()
-                    println("CÓDIGO DO CURSO:")
-                    var inputCodigoCurso = readLine()!!.toInt()
-                    println("QUANTIDADE MÁXIMA DE ALUNOS:")
-                    var inputQntAlunos = readLine()!!.toInt()
-                    var novoCurso = Curso(inputNomeCurso, inputCodigoCurso, inputQntAlunos)
-                    manager.registrarCurso(novoCurso)
+                    println("====LISTA DE PROFESSORES====")
+                   manager.listaProfPrint()
                 }catch (ex: Exception){
                     println("Algo deu errado :(\n Tente novamente.")
             }
-            }
-            "8" -> {
+            }//LISTAR PROFESSORES CADASTRADOS
+            "8" -> {//
                 try{
-                    println("NOME DO CURSO:")
-                    var inputNomeCurso = readLine()!!.toString()
-                    println("CÓDIGO DO CURSO:")
-                    var inputCodigoCurso = readLine()!!.toInt()
-                    println("QUANTIDADE MÁXIMA DE ALUNOS:")
-                    var inputQntAlunos = readLine()!!.toInt()
-                    var novoCurso = Curso(inputNomeCurso, inputCodigoCurso, inputQntAlunos)
-                    manager.registrarCurso(novoCurso)
+                    println("NOME DO(A) ALUNO(A):")
+                    val inputNomeAluno = readLine()!!.toString()
+                    println("SOBRENOME DO(A) ALUNO(A):")
+                    val inputSobrenomeALuno = readLine()!!.toString()
+                    println("CÓDIGO DO ALUNO")
+                    val inputCodAluno = readLine()!!.toInt()
+                    val novoAluno = Aluno(inputNomeAluno,inputSobrenomeALuno,inputCodAluno)
+                    manager.matricularAluno(novoAluno)
                 }catch (ex: Exception){
                     println("Algo deu errado :(\n Tente novamente.")
             }
-            }
-            "9" -> {
+            }//ADICIONAR UM NOVO ALUNO
+            "9" -> { //Matricular Aluno no Curso
                 try{
-                    println("NOME DO CURSO:")
-                    var inputNomeCurso = readLine()!!.toString()
-                    println("CÓDIGO DO CURSO:")
-                    var inputCodigoCurso = readLine()!!.toInt()
-                    println("QUANTIDADE MÁXIMA DE ALUNOS:")
-                    var inputQntAlunos = readLine()!!.toInt()
-                    var novoCurso = Curso(inputNomeCurso, inputCodigoCurso, inputQntAlunos)
-                    manager.registrarCurso(novoCurso)
+                    println("CÓDIGO DO(A) ALUNO(A)")
+                    val inputCodAluno = readLine()!!.toInt()
+                    println("CÓDIGO DO CURSO")
+                    val inputCodCurso = readLine()!!.toInt()
+                    manager.matricularAlunoCurso(inputCodAluno, inputCodCurso)
                 }catch (ex: Exception){
                     println("Algo deu errado :(\n Tente novamente.")
             }
-            }
+            }//MATRICULAR UM ALUNO EM UM CURSO
             "10" -> {
                 try{
-                    println("NOME DO CURSO:")
-                    var inputNomeCurso = readLine()!!.toString()
-                    println("CÓDIGO DO CURSO:")
-                    var inputCodigoCurso = readLine()!!.toInt()
-                    println("QUANTIDADE MÁXIMA DE ALUNOS:")
-                    var inputQntAlunos = readLine()!!.toInt()
-                    var novoCurso = Curso(inputNomeCurso, inputCodigoCurso, inputQntAlunos)
-                    manager.registrarCurso(novoCurso)
+
+                    println("CÓDIGO DO ALUNO A SER EXCLUÍDO:")
+                    val inputCodAluno = readLine()!!.toInt()
+                    manager.excluirAluno(inputCodAluno)
                 }catch (ex: Exception){
                     println("Algo deu errado :(\n Tente novamente.")
             }
-            }
+            }//EXCLUIR UM ALUNO
             "11" -> {
                 try{
-                    println("NOME DO CURSO:")
-                    var inputNomeCurso = readLine()!!.toString()
-                    println("CÓDIGO DO CURSO:")
-                    var inputCodigoCurso = readLine()!!.toInt()
-                    println("QUANTIDADE MÁXIMA DE ALUNOS:")
-                    var inputQntAlunos = readLine()!!.toInt()
-                    var novoCurso = Curso(inputNomeCurso, inputCodigoCurso, inputQntAlunos)
-                    manager.registrarCurso(novoCurso)
+                    println("====LISTA DE ALUNOS====")
+                    manager.listaAlunoPrint()
+                    println("=======================")
                 }catch (ex: Exception){
                     println("Algo deu errado :(\n Tente novamente.")
             }
-            }
+            }//LISTAR ALUNOS CADASTRADOS
             "12" -> {
                 try{
                     println("CÓDIGO ALUNO:")
-                    var codAlunoConsulta = readLine()!!.toInt()
+                    val codAlunoConsulta = readLine()!!.toInt()
+                    println("=======================")
                     manager.consultarCursoAluno(codAlunoConsulta)
+                    println("=======================")
                 }catch (ex: Exception){
                     println("Algo deu errado :(\n Tente novamente.")
             }
-            }
+            }//CONSULTAR CURSO EM QUE ALUNO ESTÁ MATRICULADO
         }
 
     }
