@@ -1,4 +1,4 @@
-package br.com.DigitalHouse.desafio1
+package br.com.digitalHouse.desafio1
 
 import java.time.Year
 
@@ -100,16 +100,15 @@ fun main() {
             "4" -> {
                 try {
                     println("PARA PROFESSOR ADJUNTO DIGITE 1 E PARA PROFESSOR TITULAR DIGITE 2")
-                    val tipoProf = readLine()!!.toInt()
-                    when (tipoProf) {
+                    when (readLine()!!.toInt()) {
                     1 -> //ADJUNTO
                     {println("NOME DO PROFESSOR:")
                     val inputNomeProf = readLine()!!.toString()
                     println("SOBRENOME DO PROFESSOR:")
                     val inputSobrenomeProf = readLine()!!.toString()
                     println("ANO DE INGRESSO NA DIGITAL HOUSE (YYYY)")
-                        if(readLine()!!.toInt() > Year.now().getValue() || readLine()!!.toInt() <= 1900) println("O ano foi digitado errado. Tente novamente")
-                    val tempoCasa= Year.now().getValue()-readLine()!!.toInt()
+                        if(readLine()!!.toInt() > Year.now().value || readLine()!!.toInt() <= 1900) println("O ano foi digitado errado. Tente novamente")
+                    val tempoCasa= Year.now().value -readLine()!!.toInt()
                     println("CÓDIGO DO PROFESSOR:")
                     val inputCodigoProf = readLine()!!.toInt()
                     println("HORAS DE MONITORIA:")
@@ -122,8 +121,8 @@ fun main() {
                     println("SOBRENOME DO PROFESSOR:")
                     val inputSobrenomeProf = readLine()!!.toString()
                     println("ANO DE INGRESSO NA DIGITAL HOUSE (YYYY)")
-                        if(readLine()!!.toInt() > Year.now().getValue() || readLine()!!.toInt() <= 1900) println("O ano foi digitado errado. Tente novamente")
-                        val tempoCasa= Year.now().getValue()-readLine()!!.toInt()
+                        if(readLine()!!.toInt() > Year.now().value || readLine()!!.toInt() <= 1900) println("O ano foi digitado errado. Tente novamente")
+                        val tempoCasa= Year.now().value - readLine()!!.toInt()
                     println("CÓDIGO DO PROFESSOR:")
                     val inputCodigoProf = readLine()!!.toInt()
                     println("ESPECIALIDADE:")

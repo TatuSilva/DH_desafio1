@@ -1,11 +1,11 @@
-package br.com.DigitalHouse.desafio1
+package br.com.digitalHouse.desafio1
 
-open class DigitalHouseManager() {
+open class DigitalHouseManager {
 
-    var listaAlunos: MutableList<Aluno> = mutableListOf()
-    var listaProfessores: MutableList<Professor> = mutableListOf()
-    var listaCurso: MutableList<Curso> = mutableListOf()
-    var listaMatriculas: MutableList<Matricula> = mutableListOf()
+    private var listaAlunos: MutableList<Aluno> = mutableListOf()
+    private var listaProfessores: MutableList<Professor> = mutableListOf()
+    private var listaCurso: MutableList<Curso> = mutableListOf()
+    private var listaMatriculas: MutableList<Matricula> = mutableListOf()
 
 //CURSOS
     open fun registrarCurso(novoCurso: Curso): Collection<Curso> {
@@ -28,12 +28,12 @@ open class DigitalHouseManager() {
 //EXCLUIR CURSO
 
        open fun excluirCurso(codExcluir: Int): MutableList<Curso> {
-           var cursoExcluir: Curso = Curso("Erro", 0,0)
+           var cursoExcluir = Curso("Erro", 0,0)
            try {
                this.listaCurso.forEach {
-                   if (it.codCurso == codExcluir.toInt()) {
+                   if (it.codCurso == codExcluir) {
                        cursoExcluir = it
-                       var index = listaCurso.indexOf(cursoExcluir)
+                       val index = listaCurso.indexOf(cursoExcluir)
                        listaCurso.removeAt(index)
                        println("Curso ${cursoExcluir.nome} excluído com sucesso!\n" +
                                "================================")
@@ -98,12 +98,12 @@ open class DigitalHouseManager() {
 
     open fun excluirProfessor(codExcluir: Int): MutableList<Professor> {
         var profExcluir: Professor
-        var naoEncontrado: Int = 0
+        var naoEncontrado = 0
         try {
             this.listaProfessores.forEach {
-                if (it.codProfessor == codExcluir.toInt()) {
+                if (it.codProfessor == codExcluir) {
                     profExcluir = it
-                    var index = listaProfessores.indexOf(profExcluir)
+                    val index = listaProfessores.indexOf(profExcluir)
                     listaProfessores.removeAt(index)
                     println("Professor(a) ${profExcluir.nome} ${profExcluir.sobrenome} excluído com sucesso!\n" +
                             "================================")
@@ -151,12 +151,12 @@ open class DigitalHouseManager() {
 
     open fun excluirAluno(codExcluir: Int): MutableList<Aluno> {
         var alunoExcluir: Aluno
-        var naoEncontrado: Int = 0
+        var naoEncontrado = 0
         try {
             this.listaAlunos.forEach {
-                if (it.codAluno == codExcluir.toInt()) {
+                if (it.codAluno == codExcluir) {
                     alunoExcluir = it
-                    var index = listaAlunos.indexOf(alunoExcluir)
+                    val index = listaAlunos.indexOf(alunoExcluir)
                     listaAlunos.removeAt(index)
                     println("Aluno(a) ${alunoExcluir.nome} ${alunoExcluir.sobrenome} excluído com sucesso!\n" +
                             "================================")
@@ -183,15 +183,15 @@ open class DigitalHouseManager() {
     //MATRICULAR ALUNO NO CURSO
     fun matricularAlunoCurso(codigoAluno: Int, codigoCurso: Int): MutableList<Matricula> {
 
-        var procuraCurso: Curso = Curso("", 0, 0)
-        var procuraAluno: Aluno = Aluno("", "", 0)
+        var procuraCurso = Curso("", 0, 0)
+        var procuraAluno = Aluno("", "", 0)
         listaCurso.forEach{
-            if(codigoCurso.toInt() == it.codCurso) {
+            if(codigoCurso == it.codCurso) {
                 procuraCurso = it
             }
         }
         listaAlunos.forEach{
-            if(codigoAluno.toInt() == it.codAluno) {
+            if(codigoAluno == it.codAluno) {
                 procuraAluno = it
             }
         }
@@ -223,22 +223,22 @@ open class DigitalHouseManager() {
 
         fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int): MutableList<Professor> {
             try{
-            var procuraProfTitular: ProfessorTitular = ProfessorTitular("", "",0,0, "")
-            var procuraProfAdjunto: ProfessorAdjunto = ProfessorAdjunto("", "",0,0, 0)
-            var procuraCurso: Curso = Curso("", 0, 0)
+            var procuraProfTitular = ProfessorTitular("", "",0,0, "")
+            var procuraProfAdjunto = ProfessorAdjunto("", "",0,0, 0)
+            var procuraCurso = Curso("", 0, 0)
 
             listaCurso.forEach{
-                if(codigoCurso.toInt() == it.codCurso) {
+                if(codigoCurso == it.codCurso) {
                     procuraCurso = it
                 }
             }
             listaProfessores.forEach{
-                if(codigoProfessorAdjunto.toInt() == it.codProfessor) {
+                if(codigoProfessorAdjunto == it.codProfessor) {
                     procuraProfAdjunto = it as ProfessorAdjunto
                 }
             }
             listaProfessores.forEach{
-                if(codigoProfessorTitular.toInt() == it.codProfessor) {
+                if(codigoProfessorTitular == it.codProfessor) {
                     procuraProfTitular = it as ProfessorTitular
                 }
             }
@@ -276,10 +276,12 @@ open class DigitalHouseManager() {
             }
             return listaProfessores
         }
+
+    //CONSULTAR CURSO ALUNO
         fun consultarCursoAluno(codigoAluno: Int){
             var procuraAlunoCurso = Aluno("","", 0)
             listaMatriculas.forEach {
-                if(codigoAluno.toInt() == it.aluno.codAluno){
+                if(codigoAluno == it.aluno.codAluno){
                     procuraAlunoCurso = it.aluno
                     println("Aluno(a) ${it.aluno.nome} está matriculado no curso ${it.curso.nome}")
                 }
